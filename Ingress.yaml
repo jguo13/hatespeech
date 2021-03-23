@@ -1,0 +1,54 @@
+# apiVersion: networking.k8s.io/v1beta1
+# kind: Ingress
+# metadata:
+#   name: test-ingress
+  # annotations:
+  #   kubernetes.io/ingress.class: nginx
+  #   nginx.ingress.kubernetes.io/use-regex: "true"
+# spec:
+#   rules:
+  # - host: scrapingproject.example.com
+    # http:
+    #   paths:
+    #   - path: /.*
+    #     backend:
+    #       serviceName: flask-service
+    #       servicePort: 5000
+      # - path: /books/.*
+      #   backend:
+      #     serviceName: flask-service
+      #     servicePort: 5000
+
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/rewrite-target: /$2
+    name: rewrite
+    namespace: default
+    resourceVersion: "1153800"
+    selfLink: /apis/networking.k8s.io/v1/namespaces/default/ingresses/rewrite
+    uid: e23068f0-e1ca-4556-93aa-0d6c6ad98c05
+  spec:
+    rules:
+    - host: scrapingproject.example.com
+      http:
+        paths:
+        - backend:
+            service:
+              name: flask-service
+              port:
+                number: 5000
+          path: /books(/|$)(.*)
+          pathType: ImplementationSpecific
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 35.225.97.117
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

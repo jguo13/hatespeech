@@ -1,0 +1,92 @@
+<template>
+	<div class="icon">
+  	<div class="arrow" v-on:click="moveArrow"></div>
+	</div>
+</template>
+
+<script>
+
+export default {
+	name: "Arrow",
+	methods:{
+    moveArrow() {
+	   this.animate([
+  	    {left: '0'},
+  	    {left: '10px'},
+  	    {left: '0'}
+	   ],{
+  	    duration: 700,
+  	    iterations: Infinity
+	   });
+	}
+
+
+
+
+	}
+}
+
+// const $icon = document.querySelector('.icon');
+// const $arrow = document.querySelector('.arrow');
+
+// $icon.onclick = () => {
+//   $arrow.animate([
+//     {left: '0'},
+//     {left: '10px'},
+//     {left: '0'}
+//   ],{
+//     duration: 700,
+//     iterations: Infinity
+//   });
+// }
+
+
+</script>
+
+<style scoped>
+body {
+  background-color: #00b894;
+  margin: 0;
+  padding: 0;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 80px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.arrow {
+  position: absolute;
+  top: 25px;
+  width: 90%;
+  height: 10px;
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+  animation: arrow 700ms linear infinite;
+}
+
+.arrow::after, .arrow::before {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 10px;
+  right: -8px;
+  background-color: #fff;
+}
+
+.arrow::after {
+  top: -12px;
+  transform: rotate(45deg);
+}
+
+.arrow::before {
+  top: 12px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+  transform: rotate(-45deg);
+}
+</style>

@@ -1,0 +1,24 @@
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: rewrite
+  namespace: default
+
+spec:
+  rules:
+  - host: scrapingproject.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: vue-webapp
+          servicePort: 8080
+        path: /
+        pathType: ImplementationSpecific
+      - backend:
+          serviceName: flask-service
+          servicePort: 5000
+        path: /books
+        pathType: ImplementationSpecific

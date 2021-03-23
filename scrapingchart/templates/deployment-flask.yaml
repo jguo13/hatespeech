@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask
+        image: gcr.io/genuine-essence-277115/addetails:v3
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5000
+        resources:
+          requests:
+            memory: "300Mi"
+            cpu: 0.5
+# ingress-nginx-3.23.0

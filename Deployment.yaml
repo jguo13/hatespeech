@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: vue-webapp
+  name: vue-webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vue-webapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: vue-webapp
+    spec:
+      containers:
+      - image: gcr.io/genuine-essence-277115/vue:latest
+        name: webapp
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 8080 
+status: {}
